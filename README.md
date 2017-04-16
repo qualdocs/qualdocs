@@ -17,7 +17,7 @@ topcode1: subcode1: subsubcode1
 topcode2: subcode1, subcode2, subcode3
 topcode1: subcode2: subsubcode1, subsubcode2, subsubcode3
 ```
-You can see a sample of docs coded in [this public folder](https://drive.google.com/open?id=1EtYEx9U9KRfAOAh9LaSsmIQyDqiJ392qZJom1Jmv5MI) on Google Drive.
+You can see a sample of docs coded in [this public folder](https://drive.google.com/drive/folders/0B8Obkw_p7o4xTkU1Y2o0WVJmalU?usp=sharing) on Google Drive.
 
 ## Setup
 
