@@ -45,7 +45,7 @@ In python, run:
 import qualdocs
 qualdocs.get_credentials()
 ```
-which will open up a browser window for you to authenticate. After you complete it, close the window and a file will be created in `[your home directory].credentials/` and you won't have to authenticate again on this user account on this machine. 
+which will open up a browser window for you to authenticate if you don't have stored credentials. After you complete it, close the window and a file will be created in `[your home directory].credentials/` and you won't have to authenticate again on this user account on this machine. 
 
 *Note!* This stores an API key in your home directory, which allows anyone who gets access to that file to read the contents of your Google Drive. The API key is scoped to read-only access, but still, keep it safe!
 
