@@ -9,5 +9,5 @@ setup(name='qualdocs',
       license='MIT',
       packages=['qualdocs'],
       install_requires=[
-          'httplib2', 'apiclient', 'oauth2client', 'pandas', 'numpy', 'PyDrive'],
+          'httplib2', 'apiclient', 'oauth2client', 'pandas', 'numpy', 'PyDrive', 'google-api-python-client'],
       zip_safe=False)
