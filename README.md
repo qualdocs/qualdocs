@@ -5,7 +5,7 @@ A python library for supporting open qualitative coding of text data in Google D
 
 Open qualitative coding (also called inductive qualitative coding) is a methodology common among social scientists who deal with heterogeneous, unstructured text data, such as news articles and interviews. Text is annotated with tags, called codes, which can be further categorized into a hierarchical structure. In contrast to closed qualitative coding, there is no pre-set list or typology of tags, as the researchers are supposed to inductively generate a typology. 
 
-Existing offerings for open qualitative coding are closed source and expensive (MaxQDA, nVivo, Dedoose). Google Docs provides a relatively easy-to-use and free collaborative platform for document annotation, but there is not an easy way to aggregate, synthesize, or search through codes -- particularly across documents. This is where qualdocs comes in.
+Existing offerings for open qualitative coding are closed source and expensive (MaxQDA, nVivo, Dedoose). Google Docs provides a relatively easy-to-use, free, collaborative, and secure platform for document annotation. But there is not an easy way to aggregate, synthesize, or search through codes -- particularly across documents. This is where qualdocs comes in.
 
 ## How to code text in Google Docs
 This approach to qualitative coding is based on comments made in Google Docs files. Leave one set of codes per comment, in any of the following formats:
