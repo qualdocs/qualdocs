@@ -55,7 +55,7 @@ import pandas as pd
 credentials = qualdocs.get_credentials()
 service = qualdocs.get_service()
 
-ids = qualdocs.get_file_ids(service, search="docathon")
+ids = qualdocs.get_file_ids(service, search="lorem")
 
 json_dict = qualdocs.get_json_dict(service, ids)
 
