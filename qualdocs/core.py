@@ -76,7 +76,7 @@ def get_credentials(client_secret=None):
     sys.argv=['']
 
 
-    SCOPES = 'https://www.googleapis.com/auth/drive'
+    SCOPES = 'https://www.googleapis.com/auth/drive.readonly'
 
     if client_secret:
         CLIENT_SECRET_FILE = client_secret
