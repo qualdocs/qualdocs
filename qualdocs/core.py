@@ -82,14 +82,14 @@ def get_credentials(client_secret=None):
         CLIENT_SECRET_FILE = client_secret
     else:
         CLIENT_SECRET_FILE = 'client_secret.json'
-    APPLICATION_NAME = 'Drive API Python Quickstart'
+    APPLICATION_NAME = 'Qualdocs'
 
     home_dir = os.path.expanduser('~')
     credential_dir = os.path.join(home_dir, '.credentials')
     if not os.path.exists(credential_dir):
         os.makedirs(credential_dir)
     credential_path = os.path.join(credential_dir,
-                                   'drive-python-quickstart.json')
+                                   'drive-api-qualdocs.json')
 
     store = Storage(credential_path)
     credentials = store.get()
