@@ -56,6 +56,12 @@ def get_file_ids(service, search=None, max_files=250):
 
     return file_ids
 
+def is_interactive():
+    "Is python running in interactive"
+
+    import __main__ as main
+    return not hasattr(main, '__file__')
+
 def get_credentials(client_secret=None):
     """Gets valid user credentials from storage.
 
@@ -65,6 +71,10 @@ def get_credentials(client_secret=None):
     Returns:
         Credentials, the obtained credential.
     """
+
+    import sys
+    sys.argv=['']
+
 
     SCOPES = 'https://www.googleapis.com/auth/drive'
 
@@ -84,6 +94,7 @@ def get_credentials(client_secret=None):
     store = Storage(credential_path)
     credentials = store.get()
     if not credentials or credentials.invalid:
+
         flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
         flow.user_agent = APPLICATION_NAME
         credentials = tools.run_flow(flow, store)
