@@ -38,9 +38,11 @@ You can see a sample of docs coded in [this public folder](https://drive.google.
 1. Click the file_download (Download JSON) button to the right of the client ID.
 1. Move this file to your working directory and rename it client_secret.json.
 
-### Do the OAuth dance
+### Do the OAuth dance, store credentials in your home directory
 
-Run `python qualdocs/get_credentials.py`, which will open up a browser window for you to authenticate. After you complete it, close the window and a file will be created in `[your home directory].credentials/`
+Run `python qualdocs/get_credentials.py`, which will open up a browser window for you to authenticate. After you complete it, close the window and a file will be created in `[your home directory].credentials/` and you won't have to authenticate again on this user account on this machine. 
+
+*Note!* This stores an API key in your home directory, which allows anyone who gets access to that file to read the contents of your Google Drive. The API key is scoped to read-only access, but still, keep it safe!
 
 ## Usage
 
