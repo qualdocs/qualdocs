@@ -2,7 +2,7 @@ from __future__ import print_function
 import httplib2
 import os
 
-from apiclient import discovery
+from googleapiclient import discovery
 from oauth2client import client
 from oauth2client import tools
 from oauth2client.file import Storage
@@ -242,10 +242,11 @@ def json_to_df(comments_json_dict, code_replace_dict=None):
 
                 process_result = process_code(raw_codes, coded_text, code_replace_dict)
                 #print(process_result)
-                for result in process_result:
+                if result is not None:
+                    for result in process_result:
 
-                    codes_dict = {'code':result[0], 'name':name, 'text':result[1], 'comment_id': comment_id, "coder":comment_author}
-                    codes_df = codes_df.append(pd.Series(codes_dict), ignore_index=True)    
+                        codes_dict = {'code':result[0], 'name':name, 'text':result[1], 'comment_id': comment_id, "coder":comment_author}
+                        codes_df = codes_df.append(pd.Series(codes_dict), ignore_index=True)    
 
             else:
                 codes = raw_codes.split("<br>")
