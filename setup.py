@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='qualdocs',
-      version='0.0.2',
+      version='0.0.9',
       description='Qualitative data analysis based on Google Docs comments',
       url='http://github.com/qualdocs/qualdocs',
       author='Stuart Geiger',

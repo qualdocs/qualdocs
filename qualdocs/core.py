@@ -210,9 +210,11 @@ def process_code(rawcode, text, code_replace_dict=None):
                 return_list.append((code_concat, text))
             return return_list
 
+def df_add_links(comments_df, file_ids):
+    return
 
 
-def json_to_df(comments_json_dict, code_replace_dict=None):
+def json_to_df(comments_json_dict, doc_ids = None, code_replace_dict=None):
     """
     Converts a dictionary of JSON responses from the API to a pandas dataframe
     with a hierarchical index.
@@ -225,7 +227,7 @@ def json_to_df(comments_json_dict, code_replace_dict=None):
     """
 
 
-    codes_df = pd.DataFrame(columns=["code","subcode","sub_subcode", "name", "text", "comment_id", "coder"])
+    codes_df = pd.DataFrame(columns=["code","subcode","sub_subcode", "name", "text", "comment_id", "coder", "url"])
 
     for name, comments_json in comments_json_dict.items():
 
@@ -235,29 +237,44 @@ def json_to_df(comments_json_dict, code_replace_dict=None):
             raw_codes = comment['htmlContent']
             comment_id = comment['id']
             comment_author = comment['author']['displayName']
+            
+            if doc_ids is not None:
+                url = "https://docs.google.com/document/d/"
+                url = url + doc_ids[name] + "/edit?disco="
+                url = url + comment_id
+            else:
+                url = None
 
+            resolved = None
+            if 'resolved' in comment: 
+                resolved = comment['resolved']
+                #print(resolved, type(resolved))
+            else:
+                resolved = False
             #print(raw_codes)
 
-            if raw_codes.find("<br>") == -1:
+            if resolved is False:
+                if raw_codes.find("<br>") == -1:
 
-                process_result = process_code(raw_codes, coded_text, code_replace_dict)
-                #print(process_result)
-                if result is not None:
-                    for result in process_result:
+                    process_result = process_code(raw_codes, coded_text, code_replace_dict)
+                    #print(process_result)
+                    if process_result is not None:
+                        for result in process_result:
 
-                        codes_dict = {'code':result[0], 'name':name, 'text':result[1], 'comment_id': comment_id, "coder":comment_author}
-                        codes_df = codes_df.append(pd.Series(codes_dict), ignore_index=True)    
 
-            else:
-                codes = raw_codes.split("<br>")
-                for code in codes:
+                            codes_dict = {'code':result[0], 'name':name, 'text':result[1], 'comment_id': comment_id, "coder":comment_author, "url":url}
+                            codes_df = codes_df.append(pd.Series(codes_dict), ignore_index=True)    
 
-                    process_result = process_code(code, coded_text, code_replace_dict)
+                else:
+                    codes = raw_codes.split("<br>")
+                    for code in codes:
 
-                    for result in process_result:
+                        process_result = process_code(code, coded_text, code_replace_dict)
 
-                        codes_dict = {'code':result[0], 'name':name, 'text':result[1], 'comment_id': comment_id, "coder":comment_author}
-                        codes_df = codes_df.append(pd.Series(codes_dict), ignore_index=True)
+                        for result in process_result:
+
+                            codes_dict = {'code':result[0], 'name':name, 'text':result[1], 'comment_id': comment_id, "coder":comment_author, "url":url}
+                            codes_df = codes_df.append(pd.Series(codes_dict), ignore_index=True)
 
     for row, items in codes_df.iterrows():
         #print(items['code'].split(":"))
@@ -281,7 +298,6 @@ def json_to_df(comments_json_dict, code_replace_dict=None):
     codes_df = codes_df.set_index(['code', 'subcode', 'sub_subcode', 'name']).sort_index()
 
     return codes_df
-    
 
 def get_code_list(codes_df):
     """
@@ -326,6 +342,3 @@ def get_code_counts(codes_df):
     code_list = get_code_list(codes_df)
 
     code_list_counter = Counter(code_list)
-
-
-
