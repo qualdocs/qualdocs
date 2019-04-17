@@ -13,7 +13,7 @@ import json
 import pandas as pd
 import numpy as np
 
-import re 
+import re
 
 def get_service(client_secret=None):
     """
@@ -94,8 +94,10 @@ def get_credentials(client_secret=None):
     store = Storage(credential_path)
     credentials = store.get()
     if not credentials or credentials.invalid:
-
-        flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
+        try:
+            flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
+        except Exception as e:
+            raise FileNotFoundError(2,"A client_secret.json file was not found in current working directory. Please download this file from the Google Developer Console, read the README.md for more information.", '')
         flow.user_agent = APPLICATION_NAME
         credentials = tools.run_flow(flow, store)
         print('Storing credentials to ' + credential_path)
