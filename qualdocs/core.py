@@ -9,6 +9,7 @@ from oauth2client.file import Storage
 
 from collections import Counter
 
+import argparse
 import json
 import pandas as pd
 import numpy as np
@@ -93,13 +94,21 @@ def get_credentials(client_secret=None):
 
     store = Storage(credential_path)
     credentials = store.get()
+
+    parser = argparse.ArgumentParser(parents=[tools.argparser])
+    flags = parser.parse_args()
+
+    flags.noauth_local_webserver=True
+    
+
     if not credentials or credentials.invalid:
         try:
             flow = client.flow_from_clientsecrets(CLIENT_SECRET_FILE, SCOPES)
         except Exception as e:
             raise FileNotFoundError(2,"A client_secret.json file was not found in current working directory. Please download this file from the Google Developer Console, read the README.md for more information.", '')
         flow.user_agent = APPLICATION_NAME
-        credentials = tools.run_flow(flow, store)
+        
+        credentials = tools.run_flow(flow, store, flags)
         print('Storing credentials to ' + credential_path)
     return credentials
 
