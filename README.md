@@ -51,7 +51,7 @@ which will open up a browser window for you to authenticate if you don't have st
 
 ## Usage
 
-Alternatively, see [this Jupyter notebook](https://github.com/qualdocs/qualdocs/blob/master/qualdocs-example.ipynb) for a demo.
+Alternatively, see [this Jupyter notebook](https://github.com/qualdocs/qualdocs/blob/master/example/qualdocs-example.ipynb)  in `example/qualdocs-example.ipynb` for a demo of authenticating and using qualdocs.
 
 ```
 import qualdocs
