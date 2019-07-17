@@ -1,6 +1,9 @@
 # qualdocs
 A python library for supporting open qualitative coding of text data in Google Docs comments.
 
+# Note: qualdocs is no longer maintained, and may not work due to changes Google has made to API access to Docs
+If you are interested in open-source software for qualitative data analysis, I recommend Taguette: https://taguette.org
+
 ## Motivation
 
 Open qualitative coding (also called inductive qualitative coding) is a methodology common among social scientists who deal with heterogeneous, unstructured text data, such as news articles and interviews. Text is annotated with tags, called codes, which can be further categorized into a hierarchical structure. In contrast to closed qualitative coding, there is no pre-set list or typology of tags, as the researchers are supposed to inductively generate a typology. 
